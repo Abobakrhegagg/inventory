@@ -106,8 +106,6 @@ public class HomeForm extends javax.swing.JFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Downloads\\icons8-account-64.png")); // NOI18N
-
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 0, 51));
         jLabel6.setText("USER");
@@ -116,25 +114,17 @@ public class HomeForm extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 0, 51));
         jLabel7.setText("PRODUCT");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Downloads\\icons8-trolley-60 (2).png")); // NOI18N
-
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 51));
         jLabel9.setText("ORDER");
-
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Downloads\\icons8-create-order-60.png")); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 51));
         jLabel11.setText("CATEGORY");
 
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Downloads\\icons8-elective-60.png")); // NOI18N
-
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 0, 51));
         jLabel13.setText("CUSTOMER");
-
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Downloads\\icons8-customer-60.png")); // NOI18N
 
         jButton2.setBackground(new java.awt.Color(255, 51, 0));
         jButton2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N

@@ -45,8 +45,6 @@ public class splach extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 51, 0));
         jLabel1.setText("%");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Downloads\\icons8-database-import-100.png")); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 51, 0));
         jLabel4.setText("InvSys");
@@ -57,7 +55,7 @@ public class splach extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
+                .addContainerGap(209, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
@@ -94,7 +92,7 @@ public class splach extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -135,6 +133,9 @@ public class splach extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(splach.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
