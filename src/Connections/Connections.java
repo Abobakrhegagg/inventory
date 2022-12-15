@@ -6,7 +6,6 @@ package connections;
 
 import Product.Files;
 import java.util.ArrayList;
-
 /**
  *
  * @author Toni Samowel
