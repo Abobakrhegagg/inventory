@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package inventoryjava;
-
-import com.sun.jdi.connect.spi.Connection;
+/*import com.sun.jdi.connect.spi.Connection;*/
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Connection;
+import java
+
 
 /**
  *
@@ -24,15 +28,23 @@ public class Category extends javax.swing.JFrame {
     Connection con=null;
     statement St=null;
     ResultSet Rs=null;
-    @SuppressWarnings("unchecked")
-    public void SelectCat()
+    public final void SelectCat()
     {
     try{
+<<<<<<< HEAD
     con=(Connection) DriverManager.getConnection("jdbcmysqllocalhost3306/myinventory","user1", "1234");
     St=con.createStatement();
     Rs=St.executeQuery("select from category");
     CatId.setModel(DbUtils.resultToTableModel(Rs));
     }catch(SQLExceotion e)
+=======
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myinventory","root","");
+    
+    St=(statement) con.createStatement();
+    Rs=St.executeQuery("select from categories");
+    categories.setmodel(DbUtils.resultSetToTableModel(Rs));
+    }catch(SQLException e)
+>>>>>>> e3f37e193812a417ceba00ea3f5678f212652750
     {
     e.printStackTrace();
     }
@@ -40,7 +52,7 @@ public class Category extends javax.swing.JFrame {
     }
 private void AddtnMouseClicked(java.awt.event.MouseEvent evt){
 try{
-    con=DriverManager.getConnection("jdbcmysqllocalhost3306/myinventory", "user1", "1234");
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myinventory","root","");
     preparedStatement add=con.prepareStatement("insert into categorytabl values()");
     add.setInt(1,Integer.valueOf(CatId.getText()));
     add.setString(2,catName.getText());
@@ -63,6 +75,10 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
     
 }
 
+    private void initComponents() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +95,7 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        CatId = new javax.swing.JLabel();
+        CatID = new javax.swing.JLabel();
         CatName = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
@@ -87,7 +103,7 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
         Add = new javax.swing.JButton();
         Edit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        CategoryTable = new javax.swing.JTable();
+        categories = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -159,9 +175,9 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
                 .addContainerGap())
         );
 
-        CatId.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        CatId.setForeground(new java.awt.Color(255, 51, 0));
-        CatId.setText("CatId");
+        CatID.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        CatID.setForeground(new java.awt.Color(255, 51, 0));
+        CatID.setText("CatID");
 
         CatName.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         CatName.setForeground(new java.awt.Color(255, 51, 0));
@@ -211,17 +227,22 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
             }
         });
 
-        CategoryTable.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
-        CategoryTable.setModel(new javax.swing.table.DefaultTableModel(
+        categories.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        categories.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CatId", "CatName"
+                "CatID", "CatName"
             }
         ));
-        CategoryTable.setSelectionBackground(new java.awt.Color(255, 0, 51));
-        jScrollPane1.setViewportView(CategoryTable);
+        categories.setSelectionBackground(new java.awt.Color(255, 0, 51));
+        categories.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoriesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(categories);
 
         jButton5.setBackground(new java.awt.Color(255, 51, 0));
         jButton5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -256,7 +277,7 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CatName)
-                    .addComponent(CatId)
+                    .addComponent(CatID)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -288,7 +309,7 @@ private void CategoryTblMouseClicked(java.awt.event.MouseEvent evt)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CatId)
+                            .addComponent(CatID)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -365,6 +386,7 @@ System.exit(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel5MouseClicked
 
+<<<<<<< HEAD
     private void EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditMouseClicked
       if(CatId.getText().isEmpty()||CatName.getText().isEmpty())
 {
@@ -392,6 +414,11 @@ int projectNo=Integer.
     private void AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseClicked
         
     }//GEN-LAST:event_AddMouseClicked
+=======
+    private void categoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriesMouseClicked
+>>>>>>> e3f37e193812a417ceba00ea3f5678f212652750
 
     /**
      * @param args the command line arguments
@@ -429,12 +456,21 @@ int projectNo=Integer.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JButton Add;
     private javax.swing.JLabel CatId;
+=======
+    private javax.swing.JLabel CatID;
+>>>>>>> e3f37e193812a417ceba00ea3f5678f212652750
     private javax.swing.JLabel CatName;
-    private javax.swing.JTable CategoryTable;
     private javax.swing.JButton Delete;
+<<<<<<< HEAD
     private javax.swing.JButton Edit;
+=======
+    private javax.swing.JTable categories;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+>>>>>>> e3f37e193812a417ceba00ea3f5678f212652750
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -453,8 +489,13 @@ class statement {
         public statement() {
         }
 
+<<<<<<< HEAD
     inventoryjava.ResultSet executeQuery(String select_from_category) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+=======
+    ResultSet executeQuery(String select_from_category) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+>>>>>>> e3f37e193812a417ceba00ea3f5678f212652750
     }
     }
 
