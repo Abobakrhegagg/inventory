@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package inventoryjava;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,7 +17,17 @@ public class Inventoryjava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {   
+            try(Connection Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myinventory","root",""))
+            {
+            System.out.println("Connection established");
+        }
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Error connection to the database");
+            
+        }
     }
     
 }
