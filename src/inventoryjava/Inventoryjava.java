@@ -18,7 +18,7 @@ public class Inventoryjava {
      */
     public static void main(String[] args) {
         try {   
-            try(Connection Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myinventory","root",""))
+            try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myinventory","root",""))
             {
             System.out.println("Connection established");
         }
