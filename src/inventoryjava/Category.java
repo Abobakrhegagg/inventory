@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
-import java
 
 
 /**
@@ -31,13 +30,12 @@ public class Category extends javax.swing.JFrame {
     public final void SelectCat()
     {
     try{
-<<<<<<< HEAD
-    con=(Connection) DriverManager.getConnection("jdbcmysqllocalhost3306/myinventory","user1", "1234");
+
+    con= DriverManager.getConnection("jdbcmysqllocalhost3306/myinventory","user1", "1234");
     St=con.createStatement();
     Rs=St.executeQuery("select from category");
     CatId.setModel(DbUtils.resultToTableModel(Rs));
     }catch(SQLExceotion e)
-=======
     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myinventory","root","");
     
     St=(statement) con.createStatement();
@@ -386,7 +384,6 @@ System.exit(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel5MouseClicked
 
-<<<<<<< HEAD
     private void EditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditMouseClicked
       if(CatId.getText().isEmpty()||CatName.getText().isEmpty())
 {
@@ -414,11 +411,11 @@ int projectNo=Integer.
     private void AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseClicked
         
     }//GEN-LAST:event_AddMouseClicked
-=======
+
     private void categoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriesMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_categoriesMouseClicked
->>>>>>> e3f37e193812a417ceba00ea3f5678f212652750
+
 
     /**
      * @param args the command line arguments
