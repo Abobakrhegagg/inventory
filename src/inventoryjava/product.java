@@ -7,11 +7,13 @@ package inventoryjava;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 
@@ -54,9 +56,9 @@ public class product extends javax.swing.JFrame {
         ProductionDate = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         ProductCAT = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        DeleteBtn = new javax.swing.JButton();
         Add = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        UpdateBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         products = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
@@ -75,6 +77,11 @@ public class product extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("x");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,10 +166,15 @@ public class product extends javax.swing.JFrame {
         ProductCAT.setForeground(new java.awt.Color(255, 0, 51));
         ProductCAT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 0));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Delete");
+        DeleteBtn.setBackground(new java.awt.Color(255, 51, 0));
+        DeleteBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        DeleteBtn.setForeground(new java.awt.Color(255, 255, 255));
+        DeleteBtn.setText("Delete");
+        DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseClicked(evt);
+            }
+        });
 
         Add.setBackground(new java.awt.Color(255, 51, 0));
         Add.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -174,12 +186,18 @@ public class product extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 51, 0));
-        jButton4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Edit");
+        UpdateBtn.setBackground(new java.awt.Color(255, 51, 0));
+        UpdateBtn.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        UpdateBtn.setForeground(new java.awt.Color(255, 255, 255));
+        UpdateBtn.setText("Update");
+        UpdateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UpdateBtnMouseClicked(evt);
+            }
+        });
 
-        products.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        products.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        products.setForeground(new java.awt.Color(255, 0, 51));
         products.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -192,12 +210,22 @@ public class product extends javax.swing.JFrame {
             }
         ));
         products.setSelectionBackground(new java.awt.Color(255, 0, 51));
+        products.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(products);
 
         jButton5.setBackground(new java.awt.Color(255, 51, 0));
         jButton5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Home");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 0, 51));
 
@@ -260,9 +288,9 @@ public class product extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(49, 49, 49)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 2, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,8 +338,8 @@ public class product extends javax.swing.JFrame {
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Add)
-                            .addComponent(jButton4)
-                            .addComponent(jButton2))
+                            .addComponent(UpdateBtn)
+                            .addComponent(DeleteBtn))
                         .addGap(28, 28, 28)
                         .addComponent(jButton5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
@@ -357,23 +385,26 @@ public void SelectProd()
 }
     private void AddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddMouseClicked
        try {
-           try (Connection Con = MyConnection.getConnection()) {
+           Connection Con = MyConnection.getConnection();
                PreparedStatement add;
                add = Con.prepareStatement("insert into products values(?,?,?,?,?,?)");
                add.setInt(1, Integer.parseInt(ProductID.getText()));
                add.setString(2,ProductName.getText());
                add.setInt(3, Integer.parseInt(ProductQTV.getText()));
-               add.setInt(4, Integer.parseInt(ProductionDate.getText()));
-               add.setInt(5, Integer.parseInt(ProductionExp.getText()));
+               add.setString(4, ProductionDate.getText());
+               add.setString(5, ProductionExp.getText());
                add.setString(6,ProductCAT.getSelectedItem().toString());
                int row = add.executeUpdate();
                JOptionPane.showMessageDialog(this , "Product Successfully added ");
+               Con.close();
+                SelectProd();
+
            }
            
            
            
 
-       } catch (SQLException e) {
+        catch (SQLException e) {
            e.printStackTrace();
        }
         
@@ -387,48 +418,100 @@ public void SelectProd()
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductNameActionPerformed
 
+    private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
+        if(ProductID.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this , "Enter The Product to be declared");
+        }
+        else
+        {
+            try{
+                Connection Con = MyConnection.getConnection();
+                String Id = ProductID.getText();
+                String Query ;
+                Query = "Delete from products where ProductID="+Id;
+                Statement Add = Con.createStatement();
+                Add.executeUpdate(Query);
+                SelectProd();
+                JOptionPane.showMessageDialog(this , "Product Deleted Successfully");
+            }
+            catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        }
+    }//GEN-LAST:event_DeleteBtnMouseClicked
+
+    private void productsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsMouseClicked
+
+        DefaultTableModel model = (DefaultTableModel)products.getModel();
+        int Myindex = products.getSelectedRow();
+        ProductID.setText(model.getValueAt(Myindex, 0).toString()); 
+          ProductName.setText(model.getValueAt(Myindex, 1).toString());
+
+            ProductQTV.setText(model.getValueAt(Myindex, 2).toString());
+
+             ProductionDate.setText(model.getValueAt(Myindex, 3).toString());
+
+          ProductionExp.setText(model.getValueAt(Myindex, 4).toString());
+
+
+    }//GEN-LAST:event_productsMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void UpdateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateBtnMouseClicked
+
+        if(ProductID.getText().isEmpty()|| ProductName.getText().isEmpty()||ProductQTV.getText().isEmpty()|| ProductionDate.getText().isEmpty()||ProductionExp.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this , "Missing Information");
+        }
+        else
+        {
+            try{
+            Connection Con = MyConnection.getConnection();
+            String UpdateQuery  = "update products set ProductName='"+ProductName.getText()+"'" + ",ProductQTV="+ProductQTV.getText()+""+",ProductionDate='"+ ProductionDate.getText()+"'"+",ProductionExp='"+ProductionExp.getText()+"'"+",ProductCAT='"+ProductCAT.getSelectedItem().toString()+"'"+"where ProductID ="+ProductID.getText();
+            Statement Add = Con.createStatement();
+            Add.executeUpdate(UpdateQuery);
+            JOptionPane.showMessageDialog(this , "Product Updated Successfully");
+            SelectProd();
+
+            
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_UpdateBtnMouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton5MouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new product().setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
+    private javax.swing.JButton DeleteBtn;
     private javax.swing.JComboBox<String> ProductCAT;
     private javax.swing.JTextField ProductID;
     private javax.swing.JTextField ProductName;
     private javax.swing.JTextField ProductQTV;
     private javax.swing.JTextField ProductionDate;
     private javax.swing.JTextField ProductionExp;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton UpdateBtn;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
