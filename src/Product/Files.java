@@ -11,7 +11,7 @@ public class Files
     private final String dbUsr;
     private final String dbPw;
     private final String serverName;
-    private String port = "1433";
+    private String port = "3306";
     /*
         there is no empty contructor because everyone have different server name
         so, this contructor takes the server name, db name, username and the pa-
@@ -321,3 +321,6 @@ public class Files
     }
 
 }
+
+
+
